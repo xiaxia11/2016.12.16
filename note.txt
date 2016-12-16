@@ -1,0 +1,84 @@
+# ajax(2016.12.15)
+
+标签（空格分隔）： 未分类
+
+--es6解构赋值  http://localhost/
+```
+1.要有个手机      ------->   创建一个ajax对象
+2.输入号码（010,123456）  -----> 填写地址
+3.拨号  --->    发送请求
+4.等待对方的回应  --->   等待服务器响应
+5.聊天   ----->  接收数据
+
+//get的
+var ajax = new XMLHttpRequest(); //手机
+ajax.open('get','php/get.php?user='+val,true); //输入号码
+ajax.send(); //按绿按钮
+ajax.onload = function(){ //等待
+	//s.innerHTML = ajax.responseText;  //聊天
+	//ajax.responseText永远是个字符串
+	console.log(JSON.parse(ajax.responseText).msg);
+}	
+
+//post的
+var ajax = new XMLHttpRequest();
+ajax.open('post','php/post.php');
+//告诉send是什么数据类型 再发送
+ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+ajax.send('user='+val);
+ajax.onload = function(){
+	s.innerHTML = ajax.responseText;
+}
+```
+> * ajax
+    * 单词的缩写
+    Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+    * 数据格式的范围：到目前，ajax不但能处理xml，还能处理json、字符串
+    '[]'   '{}'  ' ',xml
+    ajax前后端数据交互
+    * 注意：使用ajax必须要在服务器环境下运行！！！不要直接F12，如果是file协议是不能进行后端代码的（不会有响应）
+    * 优点：
+    1、只刷新数据不刷新页面，（页面无刷新请求）
+    2、在本页面请求服务器，做到实时验证，减少用户返工率并且优化用户体验
+    3、减轻服务器压力
+* ajax需要掌握的  
+1、原理（必须掌握）
+2、如何去拼写接口（必须掌握）
+3、如何操作数据****
+
+---  
+> * get方式请求：
+    * 是通过url地址进行传输数据
+    * 体积是受浏览器限制的（每个浏览器的限制是不一样的）
+    * 因为是url传输，所以填写的信息会暴露出来，相对来说不安全
+    * 在IE下如果用中文传输要记得把数据转成URI编码。
+    问题：在IE下会乱码 会暴露用户信息
+```
+encodeURI 把中文转码
+在ie下，中文会乱码 ->  中文直接转成uri编码
+encodeURI:将中文转成uri编码格式
+decodeURI:将uri编码转成中文
+%E5%A6%99%E5%91%B3
+
+```
+> * post：
+    * 1、是通过服务器来进行传输数据的
+    * 2、体积：理论上是无限的，一般后端会给限制
+    * 3、相对get来说，是比较安全的
+    * 4、要在（send之前）加请求头信息：告诉服务器当前传输的数据格式是什么样的
+
+> * eval:将字符串转成可运行的JavaScript代码
+var str3 = "{name:'leo',age：'23'}";//错误的写法 因为外边是双引号  应该是单引号
+不安全的话用new Function（'','return'+str3）();构造函数
+```
+var str3 = "{name:'leo',age:23}";
+	
+console.log(new Function('','return'+str3)());
+console.log(eval('('+str3+')'));
+```
+```
+var str = 'alert(123)';
+用JSON.parse(str)   正确的写法
+var json = JSON.parse(ajax.responseText);
+//'{"code": 1, "msg": "用户名已经被注册了！"}';
+```
