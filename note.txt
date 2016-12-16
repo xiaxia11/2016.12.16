@@ -82,3 +82,9 @@ var str = 'alert(123)';
 var json = JSON.parse(ajax.responseText);
 //'{"code": 1, "msg": "用户名已经被注册了！"}';
 ```
+
+> * function(){}会报错  自执行就好了
+ajax.responseText永远是个字符串
+因为ajax.responseText为字符串（json格式的数据）
+前端要使用json数据，要把json数据转成对象的格式才能直接使用
+所以用了JSON.parse
