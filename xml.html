@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="x" value ="开渲">
+	<ul id="ul"></ul>
+<!--<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript">
+	//简单封装ajax
+	function Ajax(method,url,succ,val){
+		val = val?val:'';
+		var ajax = new XMLHttpRequest();
+		ajax.open(method,url+val);
+		ajax.send();
+		ajax.onload = function(){
+			succ(ajax.responseXML);//转换XML用responseXML 可以转换为DOM节点
+		}
+	}
+	
+	function FnkaiX(){
+		this.ul = document.getElementById('ul');
+	}
+	
+	//生成结构
+	FnkaiX.prototype.textFn = function(person,txt){//传参 待会用于判断
+		var html ='';//声明一个空变量 用存储数据
+		for(var i = 0; i < person.length; i++){
+			var name = person[i].getElementsByTagName('name')[0][txt];
+			var age = person[i].getElementsByTagName('age')[0][txt];
+			var sex = person[i].getElementsByTagName('sex')[0][txt];
+			var info = person[i].getElementsByTagName('info')[0][txt];
+			html += '<li>我的名字叫：'+name+',今年'+age+',性别：'+sex+',我想说：'+info+'</li>';
+		}
+		this.ul.innerHTML = html;
+		
+	}
+	
+	FnkaiX.prototype.xr = function(){
+		var _this = this;//在函数调用中函数的指向会改变
+		Ajax('get','data.xml?'+new Date(),function(data){
+			var content = data.getElementsByTagName('content')[0];
+			var person = content.getElementsByTagName('person');
+			var u = window.navigator.userAgent.toLowerCase();//获取浏览器信息
+			//判断是什么浏览器
+			if(u.indexOf('msie 10') != -1 || u.indexOf('rv :11') != -1){
+				_this.textFn(person,'textContent');
+			} else if(u.search(/msie\s[7-9]/g) != -1){
+				_this.textFn(person,'text')
+			} else {
+				_this.textFn(person,'innerHTML');
+			}
+			
+		
+		})
+	}
+	
+	var x = document.getElementById('x');//按钮
+	x.onclick = function(){
+		var f = new FnkaiX();//实例化对象
+		f.xr();
+	}
+</script>
+</body>
+</html>
