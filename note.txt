@@ -1,4 +1,4 @@
-# ajax(2016.12.15)
+# ajax
 
 标签（空格分隔）： 未分类
 
@@ -10,6 +10,7 @@
 4.等待对方的回应  --->   等待服务器响应
 5.聊天   ----->  接收数据
 
+
 //get的
 var ajax = new XMLHttpRequest(); //手机
 ajax.open('get','php/get.php?user='+val,true); //输入号码
@@ -19,6 +20,7 @@ ajax.onload = function(){ //等待
 	//ajax.responseText永远是个字符串
 	console.log(JSON.parse(ajax.responseText).msg);
 }	
+
 
 //post的
 var ajax = new XMLHttpRequest();
