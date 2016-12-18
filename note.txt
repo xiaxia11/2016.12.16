@@ -1,6 +1,5 @@
 # ajax
 
-标签（空格分隔）： 未分类
 
 --es6解构赋值  http://localhost/
 ```
