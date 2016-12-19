@@ -172,6 +172,7 @@ $(function(){
 	var id = data.length;//存一下数组的长度
 	var checked = [];//声明数组
 	init();
+	
 	function init(){
 		tBody.html('');
 		$.each(data,function(i,e){
@@ -184,6 +185,7 @@ $(function(){
 		});
 		
 	}
+	
 	//tbody事件监听
 	tBody.on('click',function(ev){
 		//上移
