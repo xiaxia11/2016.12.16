@@ -2,7 +2,7 @@
 
 
 --es6解构赋值  http://localhost/
-```
+
 1.要有个手机      ------->   创建一个ajax对象
 2.输入号码（010,123456）  -----> 填写地址
 3.拨号  --->    发送请求
@@ -30,7 +30,7 @@ ajax.send('user='+val);
 ajax.onload = function(){
 	s.innerHTML = ajax.responseText;
 }
-```
+
 > * ajax
     * 单词的缩写
     Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
