@@ -322,6 +322,7 @@ $(function(){
 			}
 		});
 	}
+	
 	//判断是不是全选
 	function isChecked(){
 		if(checked.length == tBody.find('tr').length){
@@ -331,6 +332,7 @@ $(function(){
 		}
 		if(!checked.length)$('#checkAll').prop('checked',false);
 	}
+	
 	function clear(){
 		//隔行变色
 		tBody.find('tr:even').removeClass('c1');
