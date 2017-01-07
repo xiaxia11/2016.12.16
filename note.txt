@@ -53,6 +53,7 @@ ajax.onload = function(){
     * 在IE下如果用中文传输要记得把数据转成URI编码。
     问题：在IE下会乱码 会暴露用户信息
 ```
+
 encodeURI 把中文转码
 在ie下，中文会乱码 ->  中文直接转成uri编码
 encodeURI:将中文转成uri编码格式
