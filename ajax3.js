@@ -9,6 +9,8 @@ function ajax(json){
 		'fail':json.fail || function(){},
 		'type':json.type || 'json'
 	}
+	
+	
 	var ajax = new XMLHttpRequest();
 	var arr = [];
 	for(var attr in settings.data){
